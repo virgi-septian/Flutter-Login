@@ -6,6 +6,7 @@ import 'firebase_option.dart';
 import 'app/utils/loading_screen.dart';
 import 'app/utils/error_screen.dart';
 import 'app/utils/splash_screen.dart';
+import 'app/controllers/authentication_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  final authC = Get.put(AuthenticationController(), permanent: true);
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -34,7 +36,11 @@ class MyApp extends StatelessWidget {
                   return GetMaterialApp(
                     debugShowCheckedModeBanner: false,
                     title: "Chat App",
-                    initialRoute: AppPages.INITIAL,
+                    initialRoute: authC.isSkipIntro.isTrue
+                        ? authC.isAuth.isTrue
+                            ? Routes.HOME
+                            : Routes.LOGIN
+                        : Routes.INTRODUCTION,
                     getPages: AppPages.routes,
                   );
                 }

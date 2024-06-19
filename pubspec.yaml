@@ -12,6 +12,9 @@ dependencies:
   get: 4.6.6
   firebase_auth: ^4.14.1
   lottie: 2.7.0
+  introduction_screen: 3.1.12
+  avatar_glow: 2.0.2
+  emoji_picker_flutter: 1.6.3
   flutter: 
     sdk: flutter
 
@@ -21,5 +24,8 @@ dev_dependencies:
     sdk: flutter
 
 flutter: 
+  assets: 
+    - assets/lottie/
+    - assets/logo/
   uses-material-design: true
 
